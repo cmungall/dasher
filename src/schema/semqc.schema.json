@@ -1,0 +1,202 @@
+{
+   "$id": "semqc",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "definitions": {
+      "Activity": {
+         "additionalProperties": false,
+         "description": "a provence-generating activity",
+         "properties": {
+            "ended_at_time": {
+               "type": "string"
+            },
+            "id": {
+               "type": "string"
+            },
+            "started_at_time": {
+               "type": "string"
+            },
+            "used": {
+               "type": "string"
+            },
+            "was_associated_with": {
+               "$ref": "#/definitions/Agent"
+            },
+            "was_informed_by": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "Activity",
+         "type": "object"
+      },
+      "Agent": {
+         "additionalProperties": false,
+         "description": "a provence-generating agent",
+         "properties": {
+            "acted_on_behalf_of": {
+               "$ref": "#/definitions/Agent"
+            },
+            "was_informed_by": {
+               "type": "string"
+            }
+         },
+         "required": [],
+         "title": "Agent",
+         "type": "object"
+      },
+      "KnowledgeSource": {
+         "additionalProperties": false,
+         "description": "An ontology or KG or similar artefact",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "KnowledgeSource",
+         "type": "object"
+      },
+      "Message": {
+         "additionalProperties": false,
+         "description": "A piece of information communicated by an agent evaluating a metric on a source",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "evaluated_using": {
+               "type": "string"
+            },
+            "has_source": {
+               "type": "string"
+            },
+            "has_status": {
+               "description": "The status of either an entire metric result, or an individual message with a metric result",
+               "type": "string"
+            }
+         },
+         "required": [],
+         "title": "Message",
+         "type": "object"
+      },
+      "Metric": {
+         "additionalProperties": false,
+         "description": "An operational criteria on which a KG or ontology can be evaluated.",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "Metric",
+         "type": "object"
+      },
+      "MetricCollection": {
+         "additionalProperties": false,
+         "description": "A collection of metrics, e.g OBO principles",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "has_metrics": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "MetricCollection",
+         "type": "object"
+      },
+      "MetricResult": {
+         "additionalProperties": false,
+         "description": "Result of executing a metric on a KS",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "evaluated_using": {
+               "type": "string"
+            },
+            "has_messages": {
+               "items": {
+                  "$ref": "#/definitions/Message"
+               },
+               "type": "array"
+            },
+            "has_source": {
+               "type": "string"
+            },
+            "has_status": {
+               "description": "The status of either an entire metric result, or an individual message with a metric result",
+               "type": "string"
+            }
+         },
+         "required": [],
+         "title": "MetricResult",
+         "type": "object"
+      },
+      "MetricResultCollection": {
+         "additionalProperties": false,
+         "description": "A collection of metric results",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "has_knowledge_sources": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "has_metric_results": {
+               "items": {
+                  "$ref": "#/definitions/MetricResult"
+               },
+               "type": "array"
+            },
+            "id": {
+               "type": "string"
+            },
+            "uses_metric_collection": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "MetricResultCollection",
+         "type": "object"
+      }
+   },
+   "properties": {},
+   "title": "semqc",
+   "type": "object"
+}
+

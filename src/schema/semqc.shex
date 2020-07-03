@@ -1,0 +1,104 @@
+BASE <http://w3id.org/semqc/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX metatype: <https://w3id.org/biolink/biolinkml/type/>
+
+
+metatype:String xsd:string
+
+metatype:Integer xsd:integer
+
+metatype:Boolean xsd:boolean
+
+metatype:Float xsd:float
+
+metatype:Double xsd:double
+
+metatype:Time xsd:dateTime
+
+metatype:Date xsd:date
+
+metatype:Datetime xsd:dateTime
+
+metatype:Uriorcurie IRI
+
+metatype:Uri IRI
+
+metatype:Ncname xsd:string
+
+metatype:Objectidentifier IRI
+
+metatype:Nodeidentifier NONLITERAL
+
+<http://w3id.org/semqcActivity> CLOSED {
+    (  $<http://w3id.org/semqcActivity_tes> (  <http://w3id.org/semqcstarted_at_time> @metatype:String ? ;
+          <http://w3id.org/semqcended_at_time> @metatype:String ? ;
+          <http://w3id.org/semqcwas_informed_by> @<http://w3id.org/semqcActivity> ? ;
+          <http://w3id.org/semqcwas_associated_with> @<http://w3id.org/semqcAgent> ? ;
+          <http://w3id.org/semqcused> @metatype:String ?
+       ) ;
+       rdf:type [ <http://w3id.org/semqcActivity> ]
+    )
+}
+
+<http://w3id.org/semqcAgent> CLOSED {
+    (  $<http://w3id.org/semqcAgent_tes> (  <http://w3id.org/semqcacted_on_behalf_of> @<http://w3id.org/semqcAgent> ? ;
+          <http://w3id.org/semqcwas_informed_by> @<http://w3id.org/semqcActivity> ?
+       ) ;
+       rdf:type [ <http://w3id.org/semqcAgent> ] ?
+    )
+}
+
+<http://w3id.org/semqcKnowledgeSource> CLOSED {
+    (  $<http://w3id.org/semqcKnowledgeSource_tes> <http://w3id.org/semqcdescription> @metatype:String ? ;
+       rdf:type [ <http://w3id.org/semqcKnowledgeSource> ]
+    )
+}
+
+<http://w3id.org/semqcMessage> CLOSED {
+    (  $<http://w3id.org/semqcMessage_tes> (  <http://w3id.org/semqcevaluated_using> @<http://w3id.org/semqcMetric> ? ;
+          <http://w3id.org/semqchas_source> @<http://w3id.org/semqcKnowledgeSource> ? ;
+          <http://w3id.org/semqchas_status> @metatype:String ? ;
+          <http://w3id.org/semqcdescription> @metatype:String ?
+       ) ;
+       rdf:type [ <http://w3id.org/semqcMessage> ] ?
+    )
+}
+
+<http://w3id.org/semqcMetric> CLOSED {
+    (  $<http://w3id.org/semqcMetric_tes> <http://w3id.org/semqcdescription> @metatype:String ? ;
+       rdf:type [ <http://w3id.org/semqcMetric> ]
+    )
+}
+
+<http://w3id.org/semqcMetricCollection> CLOSED {
+    (  $<http://w3id.org/semqcMetricCollection_tes> (  <http://w3id.org/semqcdescription> @metatype:String ? ;
+          <http://w3id.org/semqchas_metrics> @<http://w3id.org/semqcMetric> *
+       ) ;
+       rdf:type [ <http://w3id.org/semqcMetricCollection> ]
+    )
+}
+
+<http://w3id.org/semqcMetricResult> CLOSED {
+    (  $<http://w3id.org/semqcMetricResult_tes> (  <http://w3id.org/semqcevaluated_using> @<http://w3id.org/semqcMetric> ? ;
+          <http://w3id.org/semqchas_source> @<http://w3id.org/semqcKnowledgeSource> ? ;
+          <http://w3id.org/semqchas_status> @metatype:String ? ;
+          <http://w3id.org/semqcdescription> @metatype:String ? ;
+          <http://w3id.org/semqchas_messages> @<http://w3id.org/semqcMessage> *
+       ) ;
+       rdf:type [ <http://w3id.org/semqcMetricResult> ] ?
+    )
+}
+
+<http://w3id.org/semqcMetricResultCollection> CLOSED {
+    (  $<http://w3id.org/semqcMetricResultCollection_tes> (  <http://w3id.org/semqcdescription> @metatype:String ? ;
+          <http://w3id.org/semqcuses_metric_collection> @<http://w3id.org/semqcMetricCollection> * ;
+          <http://w3id.org/semqchas_metric_results> @<http://w3id.org/semqcMetricResult> * ;
+          <http://w3id.org/semqchas_knowledge_sources> @<http://w3id.org/semqcKnowledgeSource> *
+       ) ;
+       rdf:type [ <http://w3id.org/semqcMetricResultCollection> ]
+    )
+}
+
+
+

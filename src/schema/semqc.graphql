@@ -1,0 +1,62 @@
+type Activity
+  {
+    id: String!
+    startedAtTime: String
+    endedAtTime: String
+    wasInformedBy: Activity
+    wasAssociatedWith: Agent
+    used: String
+  }
+
+type Agent
+  {
+    actedOnBehalfOf: Agent
+    wasInformedBy: Activity
+  }
+
+type KnowledgeSource
+  {
+    id: String!
+    description: String
+  }
+
+type Message
+  {
+    evaluatedUsing: Metric
+    hasSource: KnowledgeSource
+    hasStatus: String
+    description: String
+  }
+
+type Metric
+  {
+    id: String!
+    description: String
+  }
+
+type MetricCollection
+  {
+    id: String!
+    description: String
+    hasMetrics: [Metric]
+  }
+
+type MetricResult
+  {
+    evaluatedUsing: Metric
+    hasSource: KnowledgeSource
+    hasStatus: String
+    description: String
+    hasMessages: [Message]
+  }
+
+type MetricResultCollection
+  {
+    id: String!
+    description: String
+    usesMetricCollection: [MetricCollection]
+    hasMetricResults: [MetricResult]
+    hasKnowledgeSources: [KnowledgeSource]
+  }
+
+

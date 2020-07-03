@@ -1,0 +1,398 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix meta: <https://w3id.org/biolink/biolinkml/meta/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+meta:MetricResultCollection a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "metric result collection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom meta:MetricResult ;
+            owl:onProperty meta:has_metric_results ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom meta:KnowledgeSource ;
+            owl:onProperty meta:has_knowledge_sources ],
+        [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom meta:MetricCollection ;
+            owl:onProperty meta:uses_metric_collection ] ;
+    skos:definition "A collection of metric results" .
+
+meta:SubsetDefinition a owl:Class ;
+    rdfs:label "subset_definition" ;
+    skos:definition "the name and description of a subset" .
+
+meta:boolean a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "boolean" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A binary (true or false) value" .
+
+meta:date a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "date" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:date ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "a date (year, month and day) in an idealized calendar" ;
+    skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" .
+
+meta:datetime a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "datetime" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:dateTime ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "The combination of a date and time" .
+
+meta:double a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "double" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:double ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A real number that conforms to the xsd:double specification" .
+
+meta:float a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "float" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:float ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A real number that conforms to the xsd:float specification" .
+
+meta:integer a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "integer" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:integer ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "An integer" .
+
+meta:ncname a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "ncname" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "Prefix part of CURIE" .
+
+meta:nodeidentifier a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "nodeidentifier" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange <http://www.w3.org/ns/shex#nonLiteral> ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A URI, CURIE or BNODE that represents a node in a model." .
+
+meta:objectidentifier a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "objectidentifier" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange <http://www.w3.org/ns/shex#iri> ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A URI or CURIE that represents an object in the model." ;
+    skos:note "Used for inheritence and type checking" .
+
+meta:time a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "time" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:dateTime ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A time object represents a (local) time of day, independent of any particular day" ;
+    skos:editorialNote "URI is dateTime because OWL reasoners don't work with straight date or time" .
+
+meta:uri a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "uri" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:anyURI ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "a complete URI" .
+
+meta:uriorcurie a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "uriorcurie" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:anyURI ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "a URI or a CURIE" .
+
+meta:was_generated_by a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "was generated by" ;
+    rdfs:range meta:Activity .
+
+<semqc> a owl:Ontology ;
+    rdfs:label "semqc" ;
+    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
+    dcterms:title "Semantic QC Datamodel" ;
+    skos:definition "A data model for describing semantic quality control metrics plus the results of evaluating these metrics on a set of sources. This can be used to drive a dashboard. We incorporate aspects of PROV into this" ;
+    meta:generation_date "2020-07-02 16:55" ;
+    meta:metamodel_version "1.4.3" ;
+    meta:source_file "semqc.yaml" ;
+    meta:source_file_date "Thu Jul  2 16:55:23 2020" ;
+    meta:source_file_size 3206 .
+
+meta:acted_on_behalf_of a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "acted on behalf of" ;
+    rdfs:range meta:Agent .
+
+meta:ended_at_time a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "ended at time" ;
+    rdfs:range meta:string .
+
+meta:has_knowledge_sources a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "has knowledge sources" ;
+    rdfs:range meta:KnowledgeSource .
+
+meta:has_messages a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "has messages" ;
+    rdfs:range meta:Message .
+
+meta:has_metric_results a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "has metric results" ;
+    rdfs:range meta:MetricResult .
+
+meta:has_metrics a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "has metrics" ;
+    rdfs:range meta:Metric .
+
+meta:started_at_time a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "started at time" ;
+    rdfs:range meta:string .
+
+meta:used a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "used" ;
+    rdfs:domain meta:Activity ;
+    rdfs:range meta:string .
+
+meta:uses_metric_collection a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "uses metric collection" ;
+    rdfs:range meta:MetricCollection .
+
+meta:was_associated_with a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "was associated with" ;
+    rdfs:range meta:Agent .
+
+meta:Message a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "message" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Metric ;
+            owl:onProperty meta:evaluated_using ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:has_status ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:KnowledgeSource ;
+            owl:onProperty meta:has_source ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ] ;
+    skos:definition "A piece of information communicated by an agent evaluating a metric on a source" .
+
+meta:MetricCollection a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "metric collection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom meta:Metric ;
+            owl:onProperty meta:has_metrics ],
+        [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A collection of metrics, e.g OBO principles" .
+
+meta:MetricResult a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "metric result" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:KnowledgeSource ;
+            owl:onProperty meta:has_source ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Metric ;
+            owl:onProperty meta:evaluated_using ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom meta:Message ;
+            owl:onProperty meta:has_messages ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:has_status ] ;
+    skos:definition "Result of executing a metric on a KS" .
+
+meta:evaluated_using a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "evaluated using" ;
+    rdfs:range meta:Metric .
+
+meta:has_source a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "has source" ;
+    rdfs:range meta:KnowledgeSource .
+
+meta:has_status a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "has status" ;
+    rdfs:range meta:string ;
+    skos:definition "The status of either an entire metric result, or an individual message with a metric result" .
+
+meta:was_informed_by a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "was informed by" ;
+    rdfs:range meta:Activity .
+
+meta:Agent a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "agent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Activity ;
+            owl:onProperty meta:was_informed_by ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Agent ;
+            owl:onProperty meta:acted_on_behalf_of ] ;
+    skos:definition "a provence-generating agent" .
+
+meta:Activity a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "activity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Agent ;
+            owl:onProperty meta:was_associated_with ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:used ],
+        [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:started_at_time ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Activity ;
+            owl:onProperty meta:was_informed_by ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:ended_at_time ] ;
+    skos:definition "a provence-generating activity" .
+
+meta:KnowledgeSource a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "knowledge source" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
+        [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "An ontology or KG or similar artefact" .
+
+meta:Metric a owl:Class,
+        meta:ClassDefinition ;
+    rdfs:label "metric" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
+        [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "An operational criteria on which a KG or ontology can be evaluated." .
+
+meta:id a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "id" ;
+    rdfs:range meta:string .
+
+meta:description a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "description" ;
+    rdfs:range meta:string ;
+    skos:definition "A description" .
+
+meta:ClassDefinition a owl:Class ;
+    rdfs:label "class_definition" ;
+    skos:definition "the definition of a class or interface" .
+
+meta:TypeDefinition a owl:Class ;
+    rdfs:label "type_definition" ;
+    skos:definition "A data type definition." .
+
+meta:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
+
+meta:SlotDefinition a owl:Class ;
+    rdfs:label "slot_definition" ;
+    skos:definition "the definition of a property or a slot" .
+
+meta:string a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "string" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty meta:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A character string" .
+
+
+
