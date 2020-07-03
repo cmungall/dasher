@@ -17,6 +17,15 @@ URI: [semqc:KnowledgeSource](http://w3id.org/semqcKnowledgeSource)
 ## Attributes
 
 
+### Own
+
+ * [title](title.md)  <sub>OPT</sub>
+    * range: [String](types/String.md)
+ * [type](type.md)  <sub>OPT</sub>
+    * range: [String](types/String.md)
+ * [url](url.md)  <sub>OPT</sub>
+    * range: [UrlType](types/UrlType.md)
+
 ### Inherited from activity:
 
  * [id](id.md)  <sub>REQ</sub>
@@ -34,17 +43,8 @@ URI: [semqc:KnowledgeSource](http://w3id.org/semqcKnowledgeSource)
     * range: [String](types/String.md)
     * inherited from: [Activity](Activity.md)
 
-### Inherited from metric result collection:
+### Inherited from problem:
 
  * [description](description.md)  <sub>OPT</sub>
     * Description: A description
     * range: [String](types/String.md)
- * [uses metric collection](uses_metric_collection.md)  <sub>0..*</sub>
-    * range: [MetricCollection](MetricCollection.md)
-    * inherited from: None
- * [has metric results](has_metric_results.md)  <sub>0..*</sub>
-    * range: [MetricResult](MetricResult.md)
-    * inherited from: None
- * [has knowledge sources](has_knowledge_sources.md)  <sub>0..*</sub>
-    * range: [KnowledgeSource](KnowledgeSource.md)
-    * inherited from: None

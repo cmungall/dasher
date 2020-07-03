@@ -19,6 +19,11 @@ default_range: string
 imports:
   - biolinkml:types
 
+types:
+  url type:
+    typeof: uriorcurie
+    
+
 classes:
 
   metric:
@@ -33,7 +38,10 @@ classes:
       An ontology or KG or similar artefact
     slots:
       - id
+      - title
       - description
+      - url
+      - type
 
   metric result:
     description: >-
@@ -72,6 +80,14 @@ classes:
       - has metric results
       - has knowledge sources
 
+  registry:
+    description: >-
+      A collection of knowledge sources
+    slots:
+      - id
+      - description
+      - has knowledge sources
+
   ## from PROV
   activity:
     description: "a provence-generating activity"
@@ -92,7 +108,19 @@ classes:
       - was informed by
     mappings:
       - prov:Agent
-      
+
+  problem:
+    description: >-
+      An object representing an error or problem encountered
+    slots:
+      - description
+
+  download problem:
+    is_a: problem
+    description: >-
+      A problem in downloading a knowledge source
+    slots:
+      - has source
 
 slots:
 
@@ -102,7 +130,8 @@ slots:
   description:
     description: >-
       A description
-    range: string
+    mappings:
+      - dcterms:description
 
   evaluated using:
     range: metric
@@ -166,3 +195,13 @@ slots:
     domain: activity
     mappings:
       - prov:used
+
+  title:
+    mappings:
+      - dcterms:title
+
+  url:
+    range: url type
+
+  type:
+    range: string

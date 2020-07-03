@@ -46,6 +46,22 @@
          "title": "Agent",
          "type": "object"
       },
+      "DownloadProblem": {
+         "additionalProperties": false,
+         "description": "A problem in downloading a knowledge source",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "has_source": {
+               "type": "string"
+            }
+         },
+         "required": [],
+         "title": "DownloadProblem",
+         "type": "object"
+      },
       "KnowledgeSource": {
          "additionalProperties": false,
          "description": "An ontology or KG or similar artefact",
@@ -55,6 +71,15 @@
                "type": "string"
             },
             "id": {
+               "type": "string"
+            },
+            "title": {
+               "type": "string"
+            },
+            "type": {
+               "type": "string"
+            },
+            "url": {
                "type": "string"
             }
          },
@@ -192,6 +217,43 @@
             "id"
          ],
          "title": "MetricResultCollection",
+         "type": "object"
+      },
+      "Problem": {
+         "additionalProperties": false,
+         "description": "An object representing an error or problem encountered",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            }
+         },
+         "required": [],
+         "title": "Problem",
+         "type": "object"
+      },
+      "Registry": {
+         "additionalProperties": false,
+         "description": "A collection of knowledge sources",
+         "properties": {
+            "description": {
+               "description": "A description",
+               "type": "string"
+            },
+            "has_knowledge_sources": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "Registry",
          "type": "object"
       }
    },

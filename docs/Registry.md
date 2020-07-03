@@ -1,25 +1,21 @@
 
-# Type: metric collection
+# Type: registry
 
 
-A collection of metrics, e.g OBO principles
+A collection of knowledge sources
 
-URI: [semqc:MetricCollection](http://w3id.org/semqcMetricCollection)
+URI: [semqc:Registry](http://w3id.org/semqcRegistry)
 
 
-![img](http://yuml.me/diagram/nofunky;dir:TB/class/[Metric]<has%20metrics%200..*-%20[MetricCollection&#124;id:string;description:string%20%3F])
-
-## Referenced by class
-
- *  **None** *[uses metric collection](uses_metric_collection.md)*  <sub>0..*</sub>  **[MetricCollection](MetricCollection.md)**
+![img](http://yuml.me/diagram/nofunky;dir:TB/class/[KnowledgeSource]<has%20knowledge%20sources%200..*-%20[Registry&#124;id:string;description:string%20%3F])
 
 ## Attributes
 
 
 ### Own
 
- * [has metrics](has_metrics.md)  <sub>0..*</sub>
-    * range: [Metric](Metric.md)
+ * [has knowledge sources](has_knowledge_sources.md)  <sub>0..*</sub>
+    * range: [KnowledgeSource](KnowledgeSource.md)
 
 ### Inherited from activity:
 

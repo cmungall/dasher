@@ -4,6 +4,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX metatype: <https://w3id.org/biolink/biolinkml/type/>
 
 
+<http://w3id.org/semqcUrlType> IRI
+
 metatype:String xsd:string
 
 metatype:Integer xsd:integer
@@ -49,8 +51,21 @@ metatype:Nodeidentifier NONLITERAL
     )
 }
 
+<http://w3id.org/semqcDownloadProblem> CLOSED {
+    (  $<http://w3id.org/semqcDownloadProblem_tes> (  &<http://w3id.org/semqcProblem_tes> ;
+          rdf:type [ <http://w3id.org/semqcProblem> ] ? ;
+          <http://w3id.org/semqchas_source> @<http://w3id.org/semqcKnowledgeSource> ?
+       ) ;
+       rdf:type [ <http://w3id.org/semqcDownloadProblem> ] ?
+    )
+}
+
 <http://w3id.org/semqcKnowledgeSource> CLOSED {
-    (  $<http://w3id.org/semqcKnowledgeSource_tes> <http://w3id.org/semqcdescription> @metatype:String ? ;
+    (  $<http://w3id.org/semqcKnowledgeSource_tes> (  <http://w3id.org/semqctitle> @metatype:String ? ;
+          <http://w3id.org/semqcdescription> @metatype:String ? ;
+          <http://w3id.org/semqcurl> @<http://w3id.org/semqcUrlType> ? ;
+          <http://w3id.org/semqctype> @metatype:String ?
+       ) ;
        rdf:type [ <http://w3id.org/semqcKnowledgeSource> ]
     )
 }
@@ -97,6 +112,22 @@ metatype:Nodeidentifier NONLITERAL
           <http://w3id.org/semqchas_knowledge_sources> @<http://w3id.org/semqcKnowledgeSource> *
        ) ;
        rdf:type [ <http://w3id.org/semqcMetricResultCollection> ]
+    )
+}
+
+<http://w3id.org/semqcProblem>  (
+    CLOSED {
+       (  $<http://w3id.org/semqcProblem_tes> <http://w3id.org/semqcdescription> @metatype:String ? ;
+          rdf:type [ <http://w3id.org/semqcProblem> ] ?
+       )
+    } OR @<http://w3id.org/semqcDownloadProblem>
+)
+
+<http://w3id.org/semqcRegistry> CLOSED {
+    (  $<http://w3id.org/semqcRegistry_tes> (  <http://w3id.org/semqcdescription> @metatype:String ? ;
+          <http://w3id.org/semqchas_knowledge_sources> @<http://w3id.org/semqcKnowledgeSource> *
+       ) ;
+       rdf:type [ <http://w3id.org/semqcRegistry> ]
     )
 }
 

@@ -15,6 +15,9 @@ A data model for describing semantic quality control metrics plus the results of
  * [MetricCollection](MetricCollection.md) - A collection of metrics, e.g OBO principles
  * [MetricResult](MetricResult.md) - Result of executing a metric on a KS
  * [MetricResultCollection](MetricResultCollection.md) - A collection of metric results
+ * [Problem](Problem.md) - An object representing an error or problem encountered
+    * [DownloadProblem](DownloadProblem.md) - A problem in downloading a knowledge source
+ * [Registry](Registry.md) - A collection of knowledge sources
 
 ### Mixins
 
@@ -33,6 +36,9 @@ A data model for describing semantic quality control metrics plus the results of
  * [has status](has_status.md) - The status of either an entire metric result, or an individual message with a metric result
  * [id](id.md)
  * [started at time](started_at_time.md)
+ * [title](title.md)
+ * [type](type.md)
+ * [url](url.md)
  * [used](used.md)
  * [uses metric collection](uses_metric_collection.md)
  * [was associated with](was_associated_with.md)
@@ -72,3 +78,4 @@ A data model for describing semantic quality control metrics plus the results of
  * [Time](types/Time.md)  (**XSDTime**)  - A time object represents a (local) time of day, independent of any particular day
  * [Uri](types/Uri.md)  (**URI**)  - a complete URI
  * [Uriorcurie](types/Uriorcurie.md)  (**URIorCURIE**)  - a URI or a CURIE
+ * [UrlType](types/UrlType.md)  ([Uriorcurie](types/Uriorcurie.md)) 

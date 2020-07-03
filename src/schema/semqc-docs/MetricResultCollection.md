@@ -14,11 +14,6 @@ URI: [semqc:MetricResultCollection](http://w3id.org/semqcMetricResultCollection)
 
 ### Own
 
- * [description](description.md)  <sub>OPT</sub>
-    * Description: A description
-    * range: [String](types/String.md)
- * [has knowledge sources](has_knowledge_sources.md)  <sub>0..*</sub>
-    * range: [KnowledgeSource](KnowledgeSource.md)
  * [has metric results](has_metric_results.md)  <sub>0..*</sub>
     * range: [MetricResult](MetricResult.md)
  * [uses metric collection](uses_metric_collection.md)  <sub>0..*</sub>
@@ -40,3 +35,14 @@ URI: [semqc:MetricResultCollection](http://w3id.org/semqcMetricResultCollection)
  * [used](used.md)  <sub>OPT</sub>
     * range: [String](types/String.md)
     * inherited from: [Activity](Activity.md)
+
+### Inherited from problem:
+
+ * [description](description.md)  <sub>OPT</sub>
+    * Description: A description
+    * range: [String](types/String.md)
+
+### Inherited from registry:
+
+ * [has knowledge sources](has_knowledge_sources.md)  <sub>0..*</sub>
+    * range: [KnowledgeSource](KnowledgeSource.md)

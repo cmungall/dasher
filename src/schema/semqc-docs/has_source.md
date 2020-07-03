@@ -19,5 +19,6 @@ None ->  <sub>OPT</sub> [KnowledgeSource](KnowledgeSource.md)
 
 ## Used by
 
+ * [DownloadProblem](DownloadProblem.md)
  * [Message](Message.md)
  * [MetricResult](MetricResult.md)

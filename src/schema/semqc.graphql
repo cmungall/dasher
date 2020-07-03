@@ -14,10 +14,19 @@ type Agent
     wasInformedBy: Activity
   }
 
+type DownloadProblem
+  {
+    description: String
+    hasSource: KnowledgeSource
+  }
+
 type KnowledgeSource
   {
     id: String!
+    title: String
     description: String
+    url: UrlType
+    type: String
   }
 
 type Message
@@ -56,6 +65,18 @@ type MetricResultCollection
     description: String
     usesMetricCollection: [MetricCollection]
     hasMetricResults: [MetricResult]
+    hasKnowledgeSources: [KnowledgeSource]
+  }
+
+type Problem
+  {
+    description: String
+  }
+
+type Registry
+  {
+    id: String!
+    description: String
     hasKnowledgeSources: [KnowledgeSource]
   }
 

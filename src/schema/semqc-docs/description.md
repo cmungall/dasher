@@ -19,9 +19,19 @@ None ->  <sub>OPT</sub> [String](types/String.md)
 
 ## Used by
 
+ * [DownloadProblem](DownloadProblem.md)
  * [KnowledgeSource](KnowledgeSource.md)
  * [Message](Message.md)
  * [Metric](Metric.md)
  * [MetricCollection](MetricCollection.md)
  * [MetricResult](MetricResult.md)
  * [MetricResultCollection](MetricResultCollection.md)
+ * [Problem](Problem.md)
+ * [Registry](Registry.md)
+
+## Other properties
+
+|  |  |  |
+| --- | --- | --- |
+| **Mappings:** | | dcterms:description |
+

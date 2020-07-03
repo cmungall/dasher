@@ -2,7 +2,8 @@ EXTS = _datamodel.py .graphql .schema.json .owl -docs .shex
 
 all: $(patsubst %,src/schema/semqc%, $(EXTS))
 
-test: all
+test:
+	pytest test
 
 src/schema/%_datamodel.py: src/schema/%.yaml
 	gen-py-classes $< > $@
@@ -29,4 +30,4 @@ deploy-dm:
 
 # use OBO registry as test
 test/data/ontologies.ttl:
-	curl -L -s http://purl.obolibrary.org/meta/$@ > $@
+	curl -L -s http://purl.obolibrary.org/meta/ontologies.ttl > $@

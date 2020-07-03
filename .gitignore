@@ -1,0 +1,6 @@
+src/schema/semqc-docs/
+venv/
+test/__pycache__/
+*.old
+src/dasher.egg-info/
+src/dasher/__pycache__/

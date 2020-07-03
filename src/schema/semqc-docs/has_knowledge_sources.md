@@ -20,3 +20,4 @@ None ->  <sub>0..*</sub> [KnowledgeSource](KnowledgeSource.md)
 ## Used by
 
  * [MetricResultCollection](MetricResultCollection.md)
+ * [Registry](Registry.md)
