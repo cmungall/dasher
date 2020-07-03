@@ -17,6 +17,11 @@ URI: [semqc:Metric](http://w3id.org/semqcMetric)
 ## Attributes
 
 
+### Own
+
+ * [implementation](implementation.md)  <sub>OPT</sub>
+    * range: [PythonClass](types/PythonClass.md)
+
 ### Inherited from activity:
 
  * [id](id.md)  <sub>REQ</sub>

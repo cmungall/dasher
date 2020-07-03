@@ -1,5 +1,5 @@
 # Auto generated from semqc.yaml by pythongen.py version: 0.4.0
-# Generation date: 2020-07-02 18:03
+# Generation date: 2020-07-02 18:58
 # Schema: semqc
 #
 # id: semqc
@@ -47,6 +47,13 @@ class UrlType(Uriorcurie):
     type_model_uri = SEMQC.UrlType
 
 
+class PythonClass(String):
+    type_class_uri = XSD.string
+    type_class_curie = "xsd:string"
+    type_name = "python class"
+    type_model_uri = SEMQC.PythonClass
+
+
 # Class references
 class MetricId(extended_str):
     pass
@@ -85,12 +92,15 @@ class Metric(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = SEMQC.Metric
 
     id: Union[str, MetricId]
+    implementation: Optional[Union[str, PythonClass]] = None
 
     def __post_init__(self, **kwargs: Dict[str, Any]):
         if self.id is None:
             raise ValueError(f"id must be supplied")
         if not isinstance(self.id, MetricId):
             self.id = MetricId(self.id)
+        if self.implementation is not None and not isinstance(self.implementation, PythonClass):
+            self.implementation = PythonClass(self.implementation)
         super().__post_init__(**kwargs)
 
 
@@ -175,7 +185,7 @@ class MetricCollection(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = SEMQC.MetricCollection
 
     id: Union[str, MetricCollectionId]
-    has_metrics: Union[str, MetricId] = empty_dict()
+    has_metrics: List[Union[str, MetricId]] = empty_list()
 
     def __post_init__(self, **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -343,7 +353,7 @@ slots.has_source = Slot(uri=SEMQC.has_source, name="has source", curie=SEMQC.cur
                       model_uri=SEMQC.has_source, domain=None, range=Optional[Union[str, KnowledgeSourceId]])
 
 slots.has_metrics = Slot(uri=SEMQC.has_metrics, name="has metrics", curie=SEMQC.curie('has_metrics'),
-                      model_uri=SEMQC.has_metrics, domain=None, range=Union[str, MetricId])
+                      model_uri=SEMQC.has_metrics, domain=None, range=List[Union[str, MetricId]])
 
 slots.has_messages = Slot(uri=SEMQC.has_messages, name="has messages", curie=SEMQC.curie('has_messages'),
                       model_uri=SEMQC.has_messages, domain=None, range=List[Union[dict, Message]])
@@ -389,3 +399,6 @@ slots.url = Slot(uri=SEMQC.url, name="url", curie=SEMQC.curie('url'),
 
 slots.type = Slot(uri=SEMQC.type, name="type", curie=SEMQC.curie('type'),
                       model_uri=SEMQC.type, domain=None, range=Optional[str])
+
+slots.implementation = Slot(uri=SEMQC.implementation, name="implementation", curie=SEMQC.curie('implementation'),
+                      model_uri=SEMQC.implementation, domain=None, range=Optional[Union[str, PythonClass]])

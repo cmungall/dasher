@@ -6,6 +6,8 @@ PREFIX metatype: <https://w3id.org/biolink/biolinkml/type/>
 
 <http://w3id.org/semqcUrlType> IRI
 
+<http://w3id.org/semqcPythonClass> xsd:string
+
 metatype:String xsd:string
 
 metatype:Integer xsd:integer
@@ -81,7 +83,9 @@ metatype:Nodeidentifier NONLITERAL
 }
 
 <http://w3id.org/semqcMetric> CLOSED {
-    (  $<http://w3id.org/semqcMetric_tes> <http://w3id.org/semqcdescription> @metatype:String ? ;
+    (  $<http://w3id.org/semqcMetric_tes> (  <http://w3id.org/semqcdescription> @metatype:String ? ;
+          <http://w3id.org/semqcimplementation> @<http://w3id.org/semqcPythonClass> ?
+       ) ;
        rdf:type [ <http://w3id.org/semqcMetric> ]
     )
 }

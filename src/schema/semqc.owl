@@ -19,19 +19,19 @@ meta:MetricResultCollection a owl:Class,
         meta:ClassDefinition ;
     rdfs:label "metric result collection" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom meta:MetricResult ;
-            owl:onProperty meta:has_metric_results ],
-        [ a owl:Restriction ;
-            owl:onClass meta:string ;
-            owl:onProperty meta:id ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
             owl:onProperty meta:description ],
         [ a owl:Restriction ;
+            owl:allValuesFrom meta:MetricResult ;
+            owl:onProperty meta:has_metric_results ],
+        [ a owl:Restriction ;
             owl:allValuesFrom meta:KnowledgeSource ;
             owl:onProperty meta:has_knowledge_sources ],
+        [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:allValuesFrom meta:MetricCollection ;
             owl:onProperty meta:uses_metric_collection ] ;
@@ -41,16 +41,16 @@ meta:Registry a owl:Class,
         meta:ClassDefinition ;
     rdfs:label "registry" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
-            owl:onProperty meta:description ],
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:allValuesFrom meta:KnowledgeSource ;
             owl:onProperty meta:has_knowledge_sources ],
         [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
-            owl:onProperty meta:id ;
-            owl:qualifiedCardinality 1 ] ;
+            owl:onProperty meta:description ] ;
     skos:definition "A collection of knowledge sources" .
 
 meta:SubsetDefinition a owl:Class ;
@@ -169,11 +169,11 @@ meta:was_generated_by a owl:ObjectProperty,
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     dcterms:title "Semantic QC Datamodel" ;
     skos:definition "A data model for describing semantic quality control metrics plus the results of evaluating these metrics on a set of sources. This can be used to drive a dashboard. We incorporate aspects of PROV into this" ;
-    meta:generation_date "2020-07-02 18:03" ;
+    meta:generation_date "2020-07-02 18:58" ;
     meta:metamodel_version "1.4.3" ;
     meta:source_file "semqc.yaml" ;
-    meta:source_file_date "Thu Jul  2 18:03:35 2020" ;
-    meta:source_file_size 3819 .
+    meta:source_file_date "Thu Jul  2 18:57:47 2020" ;
+    meta:source_file_size 3921 .
 
 meta:Problem a owl:Class,
         meta:ClassDefinition ;
@@ -208,6 +208,11 @@ meta:has_metrics a owl:ObjectProperty,
         meta:SlotDefinition ;
     rdfs:label "has metrics" ;
     rdfs:range meta:Metric .
+
+meta:implementation a owl:ObjectProperty,
+        meta:SlotDefinition ;
+    rdfs:label "implementation" ;
+    rdfs:range meta:python_class .
 
 meta:started_at_time a owl:ObjectProperty,
         meta:SlotDefinition ;
@@ -259,8 +264,8 @@ meta:Message a owl:Class,
     rdfs:label "message" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:KnowledgeSource ;
-            owl:onProperty meta:has_source ],
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
@@ -271,8 +276,8 @@ meta:Message a owl:Class,
             owl:onProperty meta:evaluated_using ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:string ;
-            owl:onProperty meta:description ] ;
+            owl:onClass meta:KnowledgeSource ;
+            owl:onProperty meta:has_source ] ;
     skos:definition "A piece of information communicated by an agent evaluating a metric on a source" .
 
 meta:MetricCollection a owl:Class,
@@ -283,12 +288,12 @@ meta:MetricCollection a owl:Class,
             owl:onProperty meta:id ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
+            owl:allValuesFrom meta:Metric ;
+            owl:onProperty meta:has_metrics ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
-            owl:onProperty meta:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom meta:Metric ;
-            owl:onProperty meta:has_metrics ] ;
+            owl:onProperty meta:description ] ;
     skos:definition "A collection of metrics, e.g OBO principles" .
 
 meta:MetricResult a owl:Class,
@@ -296,23 +301,23 @@ meta:MetricResult a owl:Class,
     rdfs:label "metric result" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:Metric ;
-            owl:onProperty meta:evaluated_using ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
-            owl:onProperty meta:description ],
+            owl:onProperty meta:has_status ],
         [ a owl:Restriction ;
             owl:allValuesFrom meta:Message ;
             owl:onProperty meta:has_messages ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:KnowledgeSource ;
-            owl:onProperty meta:has_source ],
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:string ;
-            owl:onProperty meta:has_status ] ;
+            owl:onClass meta:Metric ;
+            owl:onProperty meta:evaluated_using ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:KnowledgeSource ;
+            owl:onProperty meta:has_source ] ;
     skos:definition "Result of executing a metric on a KS" .
 
 meta:evaluated_using a owl:ObjectProperty,
@@ -330,6 +335,11 @@ meta:has_status a owl:ObjectProperty,
     rdfs:label "has status" ;
     rdfs:range meta:string ;
     skos:definition "The status of either an entire metric result, or an individual message with a metric result" .
+
+meta:python_class a owl:Class,
+        meta:TypeDefinition ;
+    rdfs:label "python class" ;
+    rdfs:subClassOf meta:string .
 
 meta:url_type a owl:Class,
         meta:TypeDefinition ;
@@ -351,12 +361,12 @@ meta:Agent a owl:Class,
     rdfs:label "agent" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:Agent ;
-            owl:onProperty meta:acted_on_behalf_of ],
+            owl:onClass meta:Activity ;
+            owl:onProperty meta:was_informed_by ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:Activity ;
-            owl:onProperty meta:was_informed_by ] ;
+            owl:onClass meta:Agent ;
+            owl:onProperty meta:acted_on_behalf_of ] ;
     skos:definition "a provence-generating agent" .
 
 meta:Activity a owl:Class,
@@ -365,7 +375,11 @@ meta:Activity a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
-            owl:onProperty meta:started_at_time ],
+            owl:onProperty meta:ended_at_time ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:Activity ;
+            owl:onProperty meta:was_informed_by ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:Agent ;
@@ -373,32 +387,32 @@ meta:Activity a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
+            owl:onProperty meta:started_at_time ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
             owl:onProperty meta:used ],
         [ a owl:Restriction ;
             owl:onClass meta:string ;
             owl:onProperty meta:id ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:string ;
-            owl:onProperty meta:ended_at_time ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:Activity ;
-            owl:onProperty meta:was_informed_by ] ;
+            owl:qualifiedCardinality 1 ] ;
     skos:definition "a provence-generating activity" .
 
 meta:Metric a owl:Class,
         meta:ClassDefinition ;
     rdfs:label "metric" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass meta:string ;
-            owl:onProperty meta:description ],
-        [ a owl:Restriction ;
             owl:onClass meta:string ;
             owl:onProperty meta:id ;
-            owl:qualifiedCardinality 1 ] ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:python_class ;
+            owl:onProperty meta:implementation ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:description ] ;
     skos:definition "An operational criteria on which a KG or ontology can be evaluated." .
 
 meta:id a owl:ObjectProperty,
@@ -410,6 +424,10 @@ meta:KnowledgeSource a owl:Class,
         meta:ClassDefinition ;
     rdfs:label "knowledge source" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass meta:string ;
+            owl:onProperty meta:id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:url_type ;
             owl:onProperty meta:url ],
@@ -421,10 +439,6 @@ meta:KnowledgeSource a owl:Class,
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;
             owl:onProperty meta:title ],
-        [ a owl:Restriction ;
-            owl:onClass meta:string ;
-            owl:onProperty meta:id ;
-            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass meta:string ;

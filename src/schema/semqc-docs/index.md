@@ -35,6 +35,7 @@ A data model for describing semantic quality control metrics plus the results of
  * [has source](has_source.md)
  * [has status](has_status.md) - The status of either an entire metric result, or an individual message with a metric result
  * [id](id.md)
+ * [implementation](implementation.md)
  * [started at time](started_at_time.md)
  * [title](title.md)
  * [type](type.md)
@@ -74,6 +75,7 @@ A data model for describing semantic quality control metrics plus the results of
  * [Ncname](types/Ncname.md)  (**NCName**)  - Prefix part of CURIE
  * [Nodeidentifier](types/Nodeidentifier.md)  (**NodeIdentifier**)  - A URI, CURIE or BNODE that represents a node in a model.
  * [Objectidentifier](types/Objectidentifier.md)  (**ElementIdentifier**)  - A URI or CURIE that represents an object in the model.
+ * [PythonClass](types/PythonClass.md)  ([String](types/String.md)) 
  * [String](types/String.md)  (**str**)  - A character string
  * [Time](types/Time.md)  (**XSDTime**)  - A time object represents a (local) time of day, independent of any particular day
  * [Uri](types/Uri.md)  (**URI**)  - a complete URI

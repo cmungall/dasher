@@ -41,6 +41,7 @@ type Metric
   {
     id: String!
     description: String
+    implementation: PythonClass
   }
 
 type MetricCollection
