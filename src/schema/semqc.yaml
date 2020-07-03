@@ -30,6 +30,11 @@ types:
 classes:
 
   metric:
+    aliases:
+      - rubric
+      - criterion
+      - rule
+      - test
     description: >-
       An operational criteria on which a KG or ontology can be evaluated.
     slots:
@@ -38,6 +43,10 @@ classes:
       - implementation
 
   knowledge source:
+    aliases:
+      - ontology
+      - knowledge graph
+      - source
     description: >-
       An ontology or KG or similar artefact
     slots:
@@ -48,6 +57,9 @@ classes:
       - type
 
   metric result:
+    aliases:
+      - result
+      - test result
     description: >-
       Result of executing a metric on a KS
     slots:
@@ -67,6 +79,9 @@ classes:
       - description
 
   metric collection:
+    aliases:
+      - test set
+      - rubric
     description: >-
       A collection of metrics, e.g OBO principles
     slots:
@@ -75,6 +90,8 @@ classes:
       - has metrics
 
   metric result collection:
+    aliases:
+      - run
     description: >-
       A collection of metric results
     slots:
@@ -85,6 +102,8 @@ classes:
       - has knowledge sources
 
   registry:
+    aliases:
+      - knowledge source collection
     description: >-
       A collection of knowledge sources
     slots:
