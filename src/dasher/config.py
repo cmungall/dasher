@@ -1,5 +1,5 @@
 
-from .semqc_datamodel import Registry
+from .semqc_datamodel import Registry, MetricCollection
 from dataclasses import dataclass, field
 from typing import Optional, Set, List, Union, Dict, Any
 import subprocess
@@ -17,5 +17,5 @@ class Config():
     """
 
     registry: Optional[Registry] = None
-
+    metric_collection: Optional[MetricCollection] = None
 

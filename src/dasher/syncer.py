@@ -1,6 +1,6 @@
 
 from typing import Optional, Set, List, Union, Dict, Any
-from .semqc_datamodel import KnowledgeSource
+from .semqc_datamodel import KnowledgeSource, Registry
 import subprocess
 import logging
 
@@ -11,7 +11,11 @@ class Syncer():
     Syncs local cash with files in registry
     """
 
-    def sync(self, src: KnowledgeSource) -> ReturnCode:
+    def sync(self, r: Registry) -> ReturnCode:
+        for src in r.has_knowledge_sources:
+            self.sync_file(src)
+
+    def sync_file(self, src: KnowledgeSource) -> ReturnCode:
         """
         Syncs a file with an upstream URL
         :param src:
