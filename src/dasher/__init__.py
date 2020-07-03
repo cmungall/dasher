@@ -4,5 +4,5 @@
 
 from .loader import Loader
 from .syncer import Syncer
-from .registry import Registry
+from .registry_util import Registry
 from .semqc_datamodel import MetricCollection, MetricResultCollection
