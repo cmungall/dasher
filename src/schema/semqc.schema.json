@@ -195,7 +195,33 @@
          "type": "object"
       }
    },
-   "properties": {},
+   "properties": {
+      "description": {
+         "description": "A description",
+         "type": "string"
+      },
+      "has_knowledge_sources": {
+         "items": {
+            "type": "string"
+         },
+         "type": "array"
+      },
+      "has_metric_results": {
+         "items": {
+            "$ref": "#/definitions/MetricResult"
+         },
+         "type": "array"
+      },
+      "id": {
+         "type": "string"
+      },
+      "uses_metric_collection": {
+         "items": {
+            "type": "string"
+         },
+         "type": "array"
+      }
+   },
    "title": "semqc",
    "type": "object"
 }

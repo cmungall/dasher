@@ -9,7 +9,7 @@ src/schema/%_datamodel.py: src/schema/%.yaml
 src/schema/%.graphql: src/schema/%.yaml
 	gen-graphql $< > $@
 src/schema/%.schema.json: src/schema/%.yaml
-	gen-json-schema -t transaction $< > $@
+	gen-json-schema -t 'metric result collection' $< > $@
 src/schema/%.shex: src/schema/%.yaml
 	gen-shex $< > $@
 src/schema/%.csv: src/schema/%.yaml
