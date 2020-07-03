@@ -23,3 +23,10 @@ src/schema/%-docs: src/schema/%.yaml
 
 deploy-docs:
 	cp src/schema/semqc-docs/*md docs/
+
+deploy-dm:
+	cp src/schema/semqc_datamodel.py src/dasher/
+
+# use OBO registry as test
+test/data/ontologies.ttl:
+	curl -L -s http://purl.obolibrary.org/meta/$@ > $@
